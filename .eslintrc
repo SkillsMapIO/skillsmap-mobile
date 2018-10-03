@@ -1,0 +1,45 @@
+{
+    "extends": ["airbnb"],
+    "plugins": ["react", "react-native"],
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [".js", ".android.js", ".ios.js"]
+        }
+      },
+      "react": {
+        "version": "16.4.1"
+      }
+    },
+    "globals": {
+      "fetch": true,
+      "__DEV__": true,
+      "navigator": true
+    },
+    "rules": {
+      "react/jsx-filename-extension": 0,
+      "react/no-unescaped-entities": 0,
+      "react/jsx-one-expression-per-line": 0,
+      "react/destructuring-assignment": 0,
+      "react/require-default-props": 0,
+      "global-require": 0,
+      "no-param-reassign": 0,
+      "max-len": ["warn", 150, 2, {
+        "ignoreUrls": true,
+        "ignoreComments": false,
+        "ignoreRegExpLiterals": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }],
+      "arrow-parens": ["error", "always", {
+        "requireForBlockBody": true
+      }],
+      "no-unused-expressions": ["error", {
+        "allowShortCircuit": true,
+        "allowTernary": true,
+        "allowTaggedTemplates": true
+      }]
+    },
+    "parser": "babel-eslint"
+  }
+  
