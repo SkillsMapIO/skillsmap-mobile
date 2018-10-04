@@ -18,10 +18,10 @@ export const LOGGED_IN = 'LoggedInScreen';
 const headerOptions = {
   title: 'SkillsMap',
   headerLeft: null,
-  headerStyle: { backgroundColor: Colors.appPurple, borderBottomColor: systemColors.k87 },
+  headerStyle: { backgroundColor: systemColors.navHeader, borderBottomColor: Colors.transparent },
   headerTintColor: 'red',
   headerTitleStyle: {
-    color: Colors.k04,
+    color: Colors.white,
   },
 };
 

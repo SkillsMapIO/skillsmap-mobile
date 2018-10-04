@@ -1,12 +1,12 @@
 import { StyleSheet } from 'react-native';
-import { Colors } from '../../themes';
 import Metrics from '../../themes/Metrics';
 import Fonts from '../../themes/Fonts';
+import { systemColors } from '../../themes/Colors';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.k04,
+    backgroundColor: systemColors.appBackground,
   },
   header: {
     width: '100%',
@@ -18,6 +18,6 @@ export default StyleSheet.create({
     marginBottom: Metrics.spacingXSmall,
     fontSize: Fonts.size.regular,
     fontFamily: Fonts.type.demi,
-    color: Colors.appPurple,
+    color: systemColors.text,
   },
 });

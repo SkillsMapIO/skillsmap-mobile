@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 
-import { Colors } from '../../themes';
+import { systemColors } from '../../themes/Colors';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.background,
+    backgroundColor: systemColors.background,
   },
   loginButton: {
     marginTop: 55,
