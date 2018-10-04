@@ -20,10 +20,9 @@ class HomeScreen extends React.Component {
     return (
       <View style={Styles.container}>
         <StatusBar barStyle="light-content" />
-        <ImageBackground source={Images.homeBg} resizeMode="repeat" style={Styles.header}>
+        <View style={Styles.header}>
           <Text style={Styles.headerWelcomeMessage} numberOfLines={1}>{welcomeMessage}</Text>
-        </ImageBackground>
-        <View style={Styles.homeList} />
+        </View>
       </View>
     );
   }
