@@ -1,8 +1,11 @@
 import { init } from '@rematch/core';
+import createRematchPersist from '@rematch/persist';
 import { createLogger } from 'redux-logger';
 
 import Models from '../models';
 import config from '../config/DebugConfig';
+import ReduxPersistConfig from '../config/ReduxPersistConfig';
+
 import { ApiConfig } from '../config/ApiConfig';
 import Api from '../services/Api';
 import FixtureApi from '../services/FixtureApi';
@@ -10,6 +13,11 @@ import FixtureApi from '../services/FixtureApi';
 export default () => {
   const api = config.useFixtures ? FixtureApi() : Api(ApiConfig);
   const middlewares = [];
+
+  /* ------------- Persist Plugin ------------- */
+  const persistPlugin = createRematchPersist({
+    ...ReduxPersistConfig,
+  });
 
   /* ------------- Logger Middleware ------------- */
 
@@ -36,7 +44,7 @@ export default () => {
   /* ------------- Init rematch ------------- */
   const store = init({
     models: Models(api),
-    plugins: [],
+    plugins: [persistPlugin],
     redux: {
       middlewares,
     },

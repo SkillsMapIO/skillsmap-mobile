@@ -5,14 +5,15 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import DebugConfig from './DebugConfig';
 
 const saveStartupFilter = createFilter('startup', ['startupCounter', 'resumeCounter']);
+const saveUserFilter = createFilter('user', ['id', 'username', 'organizationId']);
 
 const REDUX_PERSIST_CONFIG = {
   debug: DebugConfig.reduxPersistDebug,
   key: 'skillsmap.mobile',
   version: '1',
   storage,
-  whitelist: ['startup'],
-  transforms: [saveStartupFilter],
+  whitelist: ['startup', 'user'],
+  transforms: [saveStartupFilter, saveUserFilter],
   stateReconciler: autoMergeLevel2,
 };
 

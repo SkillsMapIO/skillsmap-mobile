@@ -15,6 +15,9 @@ export default () => ({
     doneStarting(state) {
       return { ...state, loading: false };
     },
+    isResuming(state) {
+      return { ...state, startedAt: Date.now() };
+    },
     incrementStartupCounter(state) {
       return { ...state, startupCounter: state.startupCounter + 1 };
     },
@@ -29,6 +32,7 @@ export default () => ({
       // We will fire more things here like data loading
     },
     async resuming() {
+      dispatch.startup.isResuming();
       dispatch.startup.incrementResumeCounter();
     },
   }),
