@@ -2,13 +2,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  ImageBackground,
   StatusBar,
   Text,
   View,
 } from 'react-native';
 import connect from 'react-redux/es/connect/connect';
-import Images from '../themes/Images';
 
 // Styles
 import Styles from './styles/HomeScreenStyles';

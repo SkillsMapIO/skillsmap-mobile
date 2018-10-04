@@ -1,7 +1,12 @@
 {
   "name": "SkillsMapMobile",
   "version": "0.0.1",
-  "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint -s",
+      "pre-push": "npm run lint && npm test"
+    }
+  },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
