@@ -24,6 +24,14 @@ export default (settings) => {
   const login = (/* username, password */) => {
     const username = Config.TEST_USER_USERNAME;
     const password = Config.TEST_USER__PASSWORD;
+
+    if (!username || !password) {
+      const error = 'Missing TEST_USER_USERNAME and TEST_USER__PASSWORD from .env file';
+      console.error(error); // eslint-disable-line no-console
+
+      throw new Error(error);
+    }
+
     const body = { username, password };
 
     return api.post('/skillz/mobile-app/test-user-token', body);
