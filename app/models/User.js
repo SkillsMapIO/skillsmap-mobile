@@ -32,13 +32,20 @@ export default (api) => ({
   },
   effects: (dispatch) => ({
     async loginRequest({ username, password }) {
+      const defaultLoginError = 'Something went wrong';
+
       dispatch.user.loginRequestStarted();
 
       try {
-        const userInfo = await api.login(username, password);
-        dispatch.user.loginRequestSuccess(userInfo);
+        const apiResponse = await api.login(username, password);
+
+        if (apiResponse.ok) {
+          dispatch.user.loginRequestSuccess(apiResponse.data);
+        } else {
+          dispatch.user.loginRequestFailed(apiResponse.data && apiResponse.data.error && defaultLoginError);
+        }
       } catch (error) {
-        dispatch.user.loginRequestFailed(error);
+        dispatch.user.loginRequestFailed(defaultLoginError);
       }
     },
     async logoutRequest() {
