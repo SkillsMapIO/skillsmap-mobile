@@ -1,5 +1,4 @@
 import { init } from '@rematch/core';
-import SelectPlugin from '@rematch/select';
 
 import Models from '../models';
 import config from '../config/DebugConfig';
@@ -11,7 +10,7 @@ export default () => {
   const api = config.useFixtures ? FixtureApi() : Api(ApiConfig);
   const store = init({
     models: Models(api),
-    plugins: [SelectPlugin()],
+    plugins: [],
   });
 
   return store;
