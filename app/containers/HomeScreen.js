@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import connect from 'react-redux/es/connect/connect';
+import { EVALUATE_SKILL_SCREEN } from '../navigation';
 
 // Styles
 import Styles from './styles/HomeScreenStyles';
@@ -16,7 +17,7 @@ import { systemColors } from '../themes/Colors';
 class HomeScreen extends React.Component {
   onLogoutPress = () => {
     this.props.logout();
-  }
+  };
 
   render() {
     const welcomeMessage = 'Welcome';
@@ -28,10 +29,16 @@ class HomeScreen extends React.Component {
           <Text style={Styles.headerWelcomeMessage} numberOfLines={1}>{welcomeMessage}</Text>
         </View>
         <Button
+          onPress={() => {
+            this.props.navigation.navigate(EVALUATE_SKILL_SCREEN, { title: 'Infrastructure & Automation' });
+          }}
+          backgroundColor={systemColors.primaryButton}
+          title="Evaluate screen"
+        />
+        <Button
           onPress={this.onLogoutPress}
           backgroundColor={systemColors.primaryButton}
           title="Logout"
-          raised
         />
       </View>
     );
