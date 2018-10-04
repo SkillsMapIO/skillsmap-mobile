@@ -43,7 +43,7 @@ LoginScreen.propTypes = {
 };
 
 const mapDispatchToProps = ({ user: { loginRequest } }) => ({
-  login: (username, password) => loginRequest(username, password),
+  login: (username, password) => loginRequest({ username, password }),
 });
 
 const mapStateToProps = (state) => ({

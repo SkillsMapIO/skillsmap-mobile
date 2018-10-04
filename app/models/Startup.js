@@ -24,12 +24,12 @@ export default () => ({
   },
   effects: (dispatch) => ({
     async starting() {
-      dispatch.isStarting();
-      dispatch.incrementStartupCounter();
+      dispatch.startup.isStarting();
+      dispatch.startup.incrementStartupCounter();
       // We will fire more things here like data loading
     },
     async resuming() {
-      dispatch.incrementResumeCounter();
+      dispatch.startup.incrementResumeCounter();
     },
   }),
 });

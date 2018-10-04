@@ -16,6 +16,8 @@ export default (api) => ({
     loginRequestSuccess(state, { id, username, organizationId }) {
       return {
         ...state,
+        loggingIn: false,
+        loginError: null,
         id,
         username,
         organizationId,
@@ -30,21 +32,18 @@ export default (api) => ({
   },
   effects: (dispatch) => ({
     async loginRequest({ username, password }) {
-      dispatch.loginRequestStarted();
+      dispatch.user.loginRequestStarted();
 
       try {
         const userInfo = await api.login(username, password);
-        dispatch.loginRequestSuccess(userInfo);
+        dispatch.user.loginRequestSuccess(userInfo);
       } catch (error) {
-        dispatch.loginRequestFailed(error);
+        dispatch.user.loginRequestFailed(error);
       }
     },
     async logoutRequest() {
       // In case we want to add more things on logout
-      dispatch.logoutRequestSuccess();
+      dispatch.user.logoutRequestSuccess();
     },
-  }),
-  selectors: () => ({
-    isUserLoggedIn: ({ user }) => !!user.id,
   }),
 });

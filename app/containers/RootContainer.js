@@ -82,7 +82,7 @@ const mapDispatchToProps = ({ connection: { setIsConnected }, startup: { startin
 
 const mapStateToProps = ({ startup, user }) => ({
   loading: startup.loading,
-  userLoggedIn: user.isUserLoggedIn,
+  userLoggedIn: !!user.id,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RootContainer);

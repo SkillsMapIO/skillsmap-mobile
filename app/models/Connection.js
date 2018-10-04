@@ -11,7 +11,7 @@ export default () => ({
   effects: (dispatch) => ({
     async loadIsConnected() {
       const isConnected = await NetInfo.isConnected.fetch();
-      dispatch.setIsConnected(isConnected);
+      dispatch.connection.setIsConnected(isConnected);
     },
   }),
 });
