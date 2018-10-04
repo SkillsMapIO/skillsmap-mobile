@@ -25,6 +25,15 @@ const headerOptions = {
   },
 };
 
+const logoHeaderTitle = (
+  <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
+    <Image
+      source={Images.logo}
+      style={{ width: 110, height: 20 }}
+    />
+  </View>
+);
+
 class RootNavigator extends PureComponent {
   render() {
     const { loggedIn } = this.props;
@@ -36,6 +45,7 @@ class RootNavigator extends PureComponent {
           navigationOptions: () => ({
             ...headerOptions,
             headerLeft: null,
+            headerTitle: logoHeaderTitle,
           }),
         },
       },
@@ -52,14 +62,7 @@ class RootNavigator extends PureComponent {
           navigationOptions: () => ({
             ...headerOptions,
             headerLeft: null,
-            headerTitle: (
-              <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
-                <Image
-                  source={Images.logo}
-                  style={{ width: 110, height: 20 }}
-                />
-              </View>
-            ),
+            headerTitle: logoHeaderTitle,
           }),
         },
         [EVALUATE_SKILL_SCREEN]: {

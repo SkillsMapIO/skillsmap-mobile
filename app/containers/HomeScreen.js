@@ -33,6 +33,7 @@ class HomeScreen extends React.Component {
             this.props.navigation.navigate(EVALUATE_SKILL_SCREEN, { title: 'Infrastructure & Automation' });
           }}
           backgroundColor={systemColors.primaryButton}
+          style={{ marginVertical: 10 }}
           title="Evaluate screen"
         />
         <Button
