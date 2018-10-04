@@ -12,9 +12,6 @@ export default () => ({
     isStarting(state) {
       return { ...state, startedAt: Date.now(), loading: true };
     },
-    doneStarting(state) {
-      return { ...state, loading: false };
-    },
     isResuming(state) {
       return { ...state, startedAt: Date.now() };
     },
@@ -24,11 +21,14 @@ export default () => ({
     incrementResumeCounter(state) {
       return { ...state, resumeCounter: state.resumeCounter + 1 };
     },
+    'user/doneLoadingTokenSuccess': (state) => ({ ...state, loading: false }),
+    'user/doneLoadingTokenUnsuccessful': (state) => ({ ...state, loading: false }),
   },
   effects: (dispatch) => ({
     async starting() {
       dispatch.startup.isStarting();
       dispatch.startup.incrementStartupCounter();
+      dispatch.user.loadToken();
       // We will fire more things here like data loading
     },
     async resuming() {

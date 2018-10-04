@@ -1,5 +1,5 @@
 export default {
-  useFixtures: __DEV__,
+  useFixtures: false,
   yellowBox: __DEV__,
   mzNotifications: __DEV__,
   fabricEnabled: !__DEV__,

@@ -1,10 +1,13 @@
+import Config from 'react-native-config';
+
 function wrapFixtureOnPromiseWithDelay(response, delay = 1000) {
   return new Promise((resolve) => {
     setTimeout(() => resolve(Object.assign({}, response)), delay);
   });
 }
 
-export default () => ({
+export default (settings) => ({
+  settings,
   getEvaluations: () => {
     let data = {};
 
@@ -24,12 +27,15 @@ export default () => ({
     return wrapFixtureOnPromiseWithDelay({ ok: true, data }, 200);
   },
   login: () => {
-    const data = {
-      id: '5a4ef699017eb992b3161db4',
-      username: 'gabceb',
-      organizationId: '5a32cfaa94aa073598a57797',
-    };
+    const token = Config.TEST_FIXTURE_TOKEN;
 
-    return wrapFixtureOnPromiseWithDelay({ ok: true, data }, 1000);
+
+    if (!token) {
+      console.error('Test token missing'); // eslint-disable-line no-console
+
+      throw new Error('Missing test token');
+    }
+
+    return wrapFixtureOnPromiseWithDelay({ ok: true, data: { token } }, 1000);
   },
 });

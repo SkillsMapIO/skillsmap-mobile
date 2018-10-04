@@ -1,4 +1,5 @@
 import apisauce from 'apisauce';
+import Config from 'react-native-config';
 
 export default (settings) => {
   const api = apisauce.create({
@@ -20,15 +21,18 @@ export default (settings) => {
     return api.get('/api/v1/member', qs);
   };
 
-  const login = (username, password) => {
+  const login = (/* username, password */) => {
+    const username = Config.TEST_USER_USERNAME;
+    const password = Config.TEST_USER__PASSWORD;
     const body = { username, password };
 
-    return api.get('/login', body);
+    return api.post('/skillz/mobile-app/test-user-token', body);
   };
 
   return {
     getEvaluations,
     getEvaluationDetails,
     login,
+    settings,
   };
 };

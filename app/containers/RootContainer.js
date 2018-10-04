@@ -32,7 +32,7 @@ class RootContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { appState: AppState.currentState, loading: true };
+    this.state = { appState: AppState.currentState, loading: props.loading };
   }
 
   componentDidMount() {
