@@ -31,6 +31,7 @@ const colors = {
   pumice: '#D6D7D6',
   butterMilk: '#FFECB3',
   beautyBush: '#F4CCCD',
+  k07: '#Ededed',
 };
 
 export const systemColors = {
@@ -46,6 +47,7 @@ export const systemColors = {
   skillNo: colors.pumice,
   skillMaybe: colors.butterMilk,
   skillObjective: colors.beautyBush,
+  separatorLine: colors.k07,
 };
 
 export default colors;

@@ -29,11 +29,12 @@ export default () => ({
       dispatch.startup.isStarting();
       dispatch.startup.incrementStartupCounter();
       dispatch.user.loadToken();
-      // We will fire more things here like data loading
+      dispatch.evaluations.evaluationsRequest();
     },
     async resuming() {
       dispatch.startup.isResuming();
       dispatch.startup.incrementResumeCounter();
+      dispatch.evaluations.evaluationsRequest();
     },
   }),
 });

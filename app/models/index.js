@@ -1,11 +1,11 @@
 import Startup from './Startup';
 import Connection from './Connection';
 import User from './User';
-import Evaluations from './EvaluationsGabceb';
+import Evaluations from './Evaluations';
 
 export default (api) => ({
-  evaluations: Evaluations(api),
   user: User(api),
+  evaluations: Evaluations(api),
   connection: Connection(),
   startup: Startup(),
 });
