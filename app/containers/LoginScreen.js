@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   SafeAreaView,
-  StatusBar,
 } from 'react-native';
 import {
   Button,
@@ -22,7 +21,6 @@ class LoginScreen extends React.Component {
   render() {
     return (
       <SafeAreaView style={Styles.container}>
-        <StatusBar barStyle="light-content" />
         <Button
           loading={this.props.loggingIn}
           disabled={this.props.loggingIn}

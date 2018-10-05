@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  StatusBar,
   Text,
   View,
   FlatList,
@@ -10,11 +9,14 @@ import {
 import { Button } from 'react-native-elements';
 import connect from 'react-redux/es/connect/connect';
 import { EVALUATION_SCREEN } from '../navigation';
-import EvaluationItem from '../components/EvaluationItem';
+import ListItem from '../components/ListItem';
 
 // Styles
 import Styles from './styles/HomeScreenStyles';
 import { systemColors } from '../themes/Colors';
+
+const EVALUATION_STATUS_COMPLETE = 'COMPLETE';
+
 
 class HomeScreen extends React.Component {
   onLogoutPress = () => {
@@ -30,16 +32,17 @@ class HomeScreen extends React.Component {
   );
 
   renderEvaluationItem = ({ item }) => {
-    const simplifiedEvaluationData = {
-      name: item.template && item.template.name,
-      status: item.status,
-    };
+    const { template, status } = item;
+    const name = template && template.name;
+
+    const subtitleStyle = status === EVALUATION_STATUS_COMPLETE ? Styles.evaluationSubtitleComplete : Styles.evaluationSubtitleInProgress;
 
     return (
-      <EvaluationItem
-        key={item.id}
-        {...simplifiedEvaluationData}
+      <ListItem
+        title={name}
+        subtitle={status}
         onPress={() => this.props.navigation.navigate(EVALUATION_SCREEN, { id: item.id })}
+        subtitleStyle={subtitleStyle}
       />
     );
   };
@@ -49,7 +52,6 @@ class HomeScreen extends React.Component {
 
     return (
       <View style={Styles.container}>
-        <StatusBar barStyle="light-content" />
         <FlatList
           data={myEvaluations}
           keyExtractor={(item) => item.id}
@@ -80,6 +82,18 @@ HomeScreen.propTypes = {
     state: PropTypes.object.isRequired,
   }).isRequired,
   logout: PropTypes.func.isRequired,
+  evaluationsData: PropTypes.arrayOf(PropTypes.shape({
+    createdDate: PropTypes.string,
+    id: PropTypes.string,
+    status: PropTypes.string,
+    subject: PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      email: PropTypes.string,
+    }),
+    template: PropTypes.shape(),
+    viewer: PropTypes.string,
+  })),
 };
 const mapStateToProps = ({ evaluations: { evaluationsData } }) => ({
   evaluationsData,

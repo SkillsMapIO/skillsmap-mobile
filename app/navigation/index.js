@@ -71,6 +71,7 @@ class RootNavigator extends PureComponent {
           screen: EvaluationScreen,
           navigationOptions: () => ({
             ...headerOptions,
+            headerBackTitle: null,
             title: 'Evaluation',
           }),
         },

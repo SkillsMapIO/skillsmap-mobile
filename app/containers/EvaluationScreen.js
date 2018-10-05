@@ -2,46 +2,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  View,
-  Text,
-  ActivityIndicator,
-  FlatList,
+  ActivityIndicator, SectionList, Text, View,
 } from 'react-native';
-import { ListItem } from 'react-native-elements';
+
 import connect from 'react-redux/es/connect/connect';
 import { EVALUATE_SKILL_SCREEN } from '../navigation';
+import ListItem from '../components/ListItem';
 
 // Styles
 import Styles from './styles/EvaluationScreenStyles';
-import { systemColors } from '../themes/Colors';
+import Colors from '../themes/Colors';
+
+const STATUS_ATTAINED = 'attained';
 
 class HomeScreen extends React.Component {
-  rendersKillGroup = ({ item }) => {
-    const { category, level, skills } = item;
-    const key = `${category}-${level}`;
-    const skillIdToOpen = skills[0];
-    const skillToOpen = this.props.currentEvaluation.skills[skillIdToOpen];
+  renderSkillGroup = ({ item, section }) => {
+    const { skill } = item;
+    const { name, status } = skill;
 
     const onPress = () => {
-      if (!skillToOpen) {
+      if (!skill) {
         return;
       }
 
       this.props.navigation.navigate(EVALUATE_SKILL_SCREEN, {
-        skill: skillToOpen,
+        skill,
         notes: this.props.currentEvaluation.notes,
         users: this.props.currentEvaluation.users,
-        title: skillToOpen.name,
+        title: section.title,
       });
     };
 
     return (
       <ListItem
-        key={key}
-        title={category}
-        subtitle={level}
+        title={name}
+        titleNumberOfLines={3}
+        subtitle={status.current && status.current}
         onPress={onPress}
-        badge={{ value: skills.length, containerStyle: Styles.itemBadgeContainer }}
       />
     );
   };
@@ -57,22 +54,45 @@ class HomeScreen extends React.Component {
     }
 
     if (currentEvaluation.loading) {
-      return (<ActivityIndicator style={Styles.loading} animating color={systemColors.primaryButton} size="large" />);
+      return (<ActivityIndicator style={Styles.loading} animating color={Colors.cornflowerblue} size="large" />);
     }
 
     if (currentEvaluation.error) {
       return (<Text>There was an error</Text>);
     }
 
-    const skillGroups = Object.values(currentEvaluation.skillGroups || {});
+    const sectionData = Object.values(currentEvaluation.skillGroups || {}).map((group) => {
+      const skills = group.skills.map((skillId) => ({ skillId, skill: this.props.currentEvaluation.skills[skillId] }));
+      const progress = skills.filter(({ skill: { status } }) => status.current && status.current.toLowerCase() === STATUS_ATTAINED);
+
+      return ({
+        id: group.id,
+        title: `${group.category}`,
+        level: group.level,
+        progress: progress.length / skills.length * 100,
+        data: skills,
+      });
+    });
 
     return (
       <View style={Styles.container}>
-        <FlatList
+        <SectionList
           style={Styles.skillsGroupList}
-          data={skillGroups}
-          keyExtractor={(item, i) => `${item.id}_${i}`}
-          renderItem={this.rendersKillGroup}
+          sections={sectionData}
+          keyExtractor={(item, i) => (`${item.id}_${i}`)}
+          stickySectionHeadersEnabled={false}
+          ItemSeparatorComponent={() => <View style={Styles.listItemSpacer} />}
+          renderSectionHeader={({ section: { title, level, progress } }) => (
+            <View style={Styles.sectionHeader}>
+              <Text style={Styles.sectionHeaderTitle}>{title}</Text>
+              <Text style={Styles.sectionHeaderLevel}>{level}</Text>
+              <View style={Styles.progressBar}><View
+                style={[Styles.progressBarValue, { width: `${progress}%` }]}
+              />
+              </View>
+            </View>
+          )}
+          renderItem={this.renderSkillGroup}
         />
       </View>
     );

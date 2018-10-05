@@ -48,6 +48,8 @@ export const systemColors = {
   skillMaybe: colors.butterMilk,
   skillObjective: colors.beautyBush,
   separatorLine: colors.k07,
+  complete: colors.cornflowerblue,
+  inProgress: colors.blueBayoux,
 };
 
 export default colors;

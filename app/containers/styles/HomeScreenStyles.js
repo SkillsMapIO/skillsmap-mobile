@@ -23,8 +23,14 @@ export default StyleSheet.create({
     fontSize: Fonts.size.large,
     color: systemColors.text,
   },
+  evaluationSubtitleComplete: {
+    color: systemColors.complete,
+  },
+  evaluationSubtitleInProgress: {
+    color: systemColors.inProgress,
+  },
   evaluationSeparator: {
-    marginLeft: Metrics.spacingMedium,
+    marginHorizontal: Metrics.spacingMedium,
     height: 1,
     backgroundColor: systemColors.separatorLine,
   },
