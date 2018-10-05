@@ -1,4 +1,5 @@
 import { init } from '@rematch/core';
+import selectPlugin from '@rematch/select';
 import createRematchPersist from '@rematch/persist';
 import { createLogger } from 'redux-logger';
 
@@ -44,7 +45,7 @@ export default () => {
   /* ------------- Init rematch ------------- */
   const store = init({
     models: Models(api),
-    plugins: [persistPlugin],
+    plugins: [persistPlugin, selectPlugin()],
     redux: {
       middlewares,
     },
