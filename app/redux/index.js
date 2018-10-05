@@ -24,7 +24,7 @@ export default () => {
 
   // remove common noise
   const loggingBlacklist = ['EFFECT_TRIGGERED', 'EFFECT_RESOLVED', 'EFFECT_REJECTED'];
-  if (__DEV__) {
+  if (!__DEV__) {
     // silence these saga-based messages
     // create the logger
     const logger = createLogger({
