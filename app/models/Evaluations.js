@@ -42,13 +42,18 @@ export default (api) => ({
     },
   },
   effects: {
-    async evaluationsRequest() {
+    async evaluationsRequest(payload, { user }) {
       const defaultError = 'Something went wrong while requesting evaluations';
+      const { token, id } = user;
+
+      if (!token) {
+        return;
+      }
 
       this.evaluationsRequestStarted();
 
       try {
-        const apiResponse = await api.getEvaluations();
+        const apiResponse = await api.getEvaluations(token, id);
 
         if (apiResponse.ok) {
           const evaluationsData = apiResponse.data;
