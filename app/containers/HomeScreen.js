@@ -10,7 +10,7 @@ import {
 import { Button } from 'react-native-elements';
 import connect from 'react-redux/es/connect/connect';
 
-import EvaluationItem from './EvaluationItem';
+//import EvaluationItem from './EvaluationItem';
 
 // Styles
 import Styles from './styles/HomeScreenStyles';
@@ -35,7 +35,8 @@ class HomeScreen extends React.Component {
       status: item.status,
     };
     return (
-      <EvaluationItem key={item.id} {...simplifiedEvaluationData} onPress={() => {}} />
+      <Text>{item.template.name}</Text>
+      //<EvaluationItem key={item.id} {...simplifiedEvaluationData} onPress={() => {}} />
     );
   };
 
