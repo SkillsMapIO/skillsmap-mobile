@@ -12,7 +12,7 @@ import Api from '../services/Api';
 import FixtureApi from '../services/FixtureApi';
 
 export default () => {
-  const api = config.useFixtures ? FixtureApi() : Api(ApiConfig);
+  const api = config.useFixtures ? FixtureApi(ApiConfig) : Api(ApiConfig);
   const middlewares = [];
 
   /* ------------- Persist Plugin ------------- */

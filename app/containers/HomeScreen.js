@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import connect from 'react-redux/es/connect/connect';
-
-//import EvaluationItem from './EvaluationItem';
+import { EVALUATE_SKILL_SCREEN } from '../navigation';
+import EvaluationItem from '../components/EvaluationItem';
 
 // Styles
 import Styles from './styles/HomeScreenStyles';
@@ -19,7 +19,7 @@ import { systemColors } from '../themes/Colors';
 class HomeScreen extends React.Component {
   onLogoutPress = () => {
     this.props.logout();
-  }
+  };
 
   renderMyEvaluationsHeader = () => (
     <View style={Styles.listTitleContainer}>
@@ -31,12 +31,11 @@ class HomeScreen extends React.Component {
 
   renderEvaluationItem = ({ item }) => {
     const simplifiedEvaluationData = {
-      title: item.template && item.template.name,
+      name: item.template && item.template.name,
       status: item.status,
     };
     return (
-      <Text>{item.template.name}</Text>
-      //<EvaluationItem key={item.id} {...simplifiedEvaluationData} onPress={() => {}} />
+      <EvaluationItem key={item.id} {...simplifiedEvaluationData} onPress={() => {}} />
     );
   };
 
@@ -63,10 +62,17 @@ class HomeScreen extends React.Component {
           )}
         />
         <Button
+          onPress={() => {
+            this.props.navigation.navigate(EVALUATE_SKILL_SCREEN, { title: 'Infrastructure & Automation' });
+          }}
+          backgroundColor={systemColors.primaryButton}
+          style={{ marginVertical: 10 }}
+          title="Evaluate screen"
+        />
+        <Button
           onPress={this.onLogoutPress}
           backgroundColor={systemColors.primaryButton}
           title="Logout"
-          raised
         />
       </View>
     );
