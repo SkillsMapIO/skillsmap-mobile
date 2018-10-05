@@ -8,18 +8,6 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: systemColors.appBackground,
   },
-  header: {
-    width: '100%',
-    height: 195,
-    alignItems: 'center',
-    paddingTop: Metrics.spacingSmedium,
-  },
-  headerWelcomeMessage: {
-    marginBottom: Metrics.spacingXSmall,
-    fontSize: Fonts.size.regular,
-    fontFamily: Fonts.type.demi,
-    color: systemColors.text,
-  },
   listTitleContainer: {
     paddingHorizontal: Metrics.spacingMedium,
     paddingTop: Metrics.spacingLarge,

@@ -45,15 +45,11 @@ class HomeScreen extends React.Component {
   };
 
   render() {
-    const welcomeMessage = 'Welcome!';
     const myEvaluations = this.props.evaluationsData;
 
     return (
       <View style={Styles.container}>
         <StatusBar barStyle="light-content" />
-        <View style={Styles.header}>
-          <Text style={Styles.headerWelcomeMessage} numberOfLines={1}>{welcomeMessage}</Text>
-        </View>
         <FlatList
           data={myEvaluations}
           keyExtractor={(item) => item.id}
@@ -70,7 +66,7 @@ class HomeScreen extends React.Component {
           onPress={this.onLogoutPress}
           backgroundColor={systemColors.primaryButton}
           title="Logout"
-          style={{ marginVertical: 10 }}
+          style={{ marginBottom: 20 }}
         />
       </View>
     );

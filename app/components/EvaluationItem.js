@@ -1,23 +1,19 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {
-  Text, View,
-} from 'react-native';
+import { ListItem } from 'react-native-elements';
 
 class EvaluationItem extends React.PureComponent {
   render() {
     const {
-      name, status,
+      name, status, onPress,
     } = this.props;
     return (
-      <View>
-        <View>
-          <Text numberOfLines={1}>{name}</Text>
-        </View>
-        <View>
-          <Text>{status.toUpperCase()}</Text>
-        </View>
-      </View>
+      <ListItem
+        key={`${name}-${status}`}
+        title={name}
+        subtitle={status}
+        onPress={onPress}
+      />
     );
   }
 }
@@ -25,6 +21,7 @@ class EvaluationItem extends React.PureComponent {
 EvaluationItem.propTypes = {
   name: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
+  onPress: PropTypes.func.isRequired,
 };
 
 export default EvaluationItem;
