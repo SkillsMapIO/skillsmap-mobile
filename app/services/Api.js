@@ -1,6 +1,8 @@
 import apisauce from 'apisauce';
 import Config from 'react-native-config';
 
+const generateAuthorizationHeader = (userToken) => ({ Authorization: `Bearer ${userToken}` });
+
 export default (settings) => {
   const api = apisauce.create({
     baseURL: settings.baseUrl,
@@ -9,16 +11,16 @@ export default (settings) => {
     timeout: 10000,
   });
 
-  const getEvaluations = () => {
-    const authHeader = settings.generateAuthorizationHeader();
+  const getEvaluations = (token, userId) => {
+    const authHeader = generateAuthorizationHeader(token);
 
-    return api.get('/api/school-portal/mobile/users/organisations-with-roles', {}, { headers: authHeader });
+    return api.get(`/skillz/users/${userId}/evaluations`, {}, { headers: authHeader });
   };
 
-  const getEvaluationDetails = (evaluationId) => {
-    const qs = { evaluationId };
+  const getEvaluationDetails = (token, evaluationId) => {
+    const authHeader = generateAuthorizationHeader(token);
 
-    return api.get('/api/v1/member', qs);
+    return api.get(`/skillz/evaluations/${evaluationId}`, {}, { headers: authHeader });
   };
 
   const login = (/* username, password */) => {

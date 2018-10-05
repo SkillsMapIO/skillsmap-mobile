@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import connect from 'react-redux/es/connect/connect';
-import { EVALUATE_SKILL_SCREEN } from '../navigation';
+import { EVALUATION_SCREEN } from '../navigation';
 
 // Styles
 import Styles from './styles/HomeScreenStyles';
@@ -30,16 +30,17 @@ class HomeScreen extends React.Component {
         </View>
         <Button
           onPress={() => {
-            this.props.navigation.navigate(EVALUATE_SKILL_SCREEN, { title: 'Infrastructure & Automation' });
+            this.props.navigation.navigate(EVALUATION_SCREEN, { id: '5bae5e61fe7c2400558d0637' });
           }}
           backgroundColor={systemColors.primaryButton}
           style={{ marginVertical: 10 }}
-          title="Evaluate screen"
+          title="Evaluation screen"
         />
         <Button
           onPress={this.onLogoutPress}
           backgroundColor={systemColors.primaryButton}
           title="Logout"
+          style={{ marginVertical: 10 }}
         />
       </View>
     );

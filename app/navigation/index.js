@@ -5,6 +5,7 @@ import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import Images from '../themes/Images';
 // Screens
 import EvaluateSkillScreen from '../containers/EvaluateSkillScreen';
+import EvaluationScreen from '../containers/EvaluationScreen';
 import HomeScreen from '../containers/HomeScreen';
 import LoginScreen from '../containers/LoginScreen';
 // Styles
@@ -13,6 +14,7 @@ import Colors, { systemColors } from '../themes/Colors';
 //
 export const HOME_SCREEN = 'HomeScreen';
 export const EVALUATE_SKILL_SCREEN = 'EvaluateSkillScreen';
+export const EVALUATION_SCREEN = 'EvaluationScreen';
 export const LOGIN_SCREEN = 'LoginScreen';
 export const LOGGED_OUT = 'LoggedOutScreen';
 export const LOGGED_IN = 'LoggedInScreen';
@@ -63,6 +65,13 @@ class RootNavigator extends PureComponent {
             ...headerOptions,
             headerLeft: null,
             headerTitle: logoHeaderTitle,
+          }),
+        },
+        [EVALUATION_SCREEN]: {
+          screen: EvaluationScreen,
+          navigationOptions: () => ({
+            ...headerOptions,
+            title: 'Evaluation',
           }),
         },
         [EVALUATE_SKILL_SCREEN]: {

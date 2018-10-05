@@ -24,7 +24,7 @@ export default (settings) => ({
       data = require('./fixtures/evaluation-details.json');
     }
 
-    return wrapFixtureOnPromiseWithDelay({ ok: true, data }, 200);
+    return wrapFixtureOnPromiseWithDelay({ ok: true, data }, 1000);
   },
   login: () => {
     const token = Config.TEST_FIXTURE_TOKEN;
