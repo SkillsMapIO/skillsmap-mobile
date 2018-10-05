@@ -1,29 +1,38 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Image, View } from 'react-native';
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
-
+import Images from '../themes/Images';
 // Screens
+import EvaluateSkillScreen from '../containers/EvaluateSkillScreen';
 import HomeScreen from '../containers/HomeScreen';
 import LoginScreen from '../containers/LoginScreen';
-
 // Styles
 import Colors, { systemColors } from '../themes/Colors';
 
 //
 export const HOME_SCREEN = 'HomeScreen';
+export const EVALUATE_SKILL_SCREEN = 'EvaluateSkillScreen';
 export const LOGIN_SCREEN = 'LoginScreen';
 export const LOGGED_OUT = 'LoggedOutScreen';
 export const LOGGED_IN = 'LoggedInScreen';
 
 const headerOptions = {
-  title: 'SkillsMap',
-  headerLeft: null,
-  headerStyle: { backgroundColor: systemColors.navHeader, borderBottomColor: Colors.transparent },
-  headerTintColor: 'red',
+  headerStyle: { backgroundColor: systemColors.navHeader, borderBottomColor: Colors.iron },
+  headerTintColor: Colors.astral,
   headerTitleStyle: {
-    color: Colors.white,
+    color: systemColors.text,
   },
 };
+
+const logoHeaderTitle = (
+  <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
+    <Image
+      source={Images.logo}
+      style={{ width: 110, height: 20 }}
+    />
+  </View>
+);
 
 class RootNavigator extends PureComponent {
   render() {
@@ -35,6 +44,8 @@ class RootNavigator extends PureComponent {
           screen: LoginScreen,
           navigationOptions: () => ({
             ...headerOptions,
+            headerLeft: null,
+            headerTitle: logoHeaderTitle,
           }),
         },
       },
@@ -48,7 +59,17 @@ class RootNavigator extends PureComponent {
       {
         [HOME_SCREEN]: {
           screen: HomeScreen,
-          navigationOptions: () => ({ ...headerOptions }),
+          navigationOptions: () => ({
+            ...headerOptions,
+            headerLeft: null,
+            headerTitle: logoHeaderTitle,
+          }),
+        },
+        [EVALUATE_SKILL_SCREEN]: {
+          screen: EvaluateSkillScreen,
+          navigationOptions: () => ({
+            ...headerOptions,
+          }),
         },
       },
       {
