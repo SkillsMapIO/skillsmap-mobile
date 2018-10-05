@@ -72,6 +72,11 @@ export default (api) => ({
           }
 
           dispatch.user.doneLoadingTokenSuccess({ token, decodedToken });
+
+          // TODO: This should not be here. Instead we should listen for doneLoadingTokenSuccess
+          // on the startup module or evaluations model and trigger this effect
+          // but i dont know how to do it yet
+          dispatch.evaluations.evaluationsRequest();
         } catch (err) {
           console.error('Token with bad format received', err); // eslint-disable-line no-console
 

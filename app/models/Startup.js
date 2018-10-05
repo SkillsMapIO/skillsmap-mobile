@@ -29,7 +29,6 @@ export default () => ({
       dispatch.startup.isStarting();
       dispatch.startup.incrementStartupCounter();
       dispatch.user.loadToken();
-      dispatch.evaluations.evaluationsRequest();
     },
     async resuming() {
       dispatch.startup.isResuming();
